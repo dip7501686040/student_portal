@@ -66,7 +66,6 @@
         $("#header").load("header.html");
       });
     </script> -->
-    
   </head>
   <body>
     <div class="d-flex flex-column" id="index_container">
@@ -101,7 +100,7 @@
 
               <form class="login100-form validate-form" id="login_form">
                 <span class="login100-form-title"> Admin Login </span>
-
+                <span id="error" style="color: red; text-align: center"></span>
                 <div
                   class="wrap-input100 validate-input"
                   data-validate="Valid email is required: ex@abc.xyz"
@@ -137,7 +136,9 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                  <button class="login100-form-btn" id="login_button">Login</button>
+                  <button class="login100-form-btn" id="login_button">
+                    Login
+                  </button>
                 </div>
 
                 <div class="text-center p-t-12">
@@ -178,17 +179,32 @@
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
     <script>
-      $(document).ready(function(){
-        $("#login_button").on('click', e => {
+      $(document).ready(function () {
+        $("#login_button").on("click", (e) => {
           e.preventDefault();
-          let user_name = $("#user_name").val()
-          let password = $("#password").val()
-          if(user_name && password){
+          let user_name = $("#user_name").val();
+          let password = $("#password").val();
+          if (user_name && password) {
             $.ajax({
-              url: ''
-            })
+              contentType: "application/json; charset=utf-8",
+              url: "http://localhost:9000/",
+              type: "POST",
+              data: JSON.stringify({
+                user_name: user_name,
+                password: password,
+              }),
+              success: (message, status) => {
+                if (message == "Welcome Admin") {
+                  window.location.href = "dashboard.html";
+                } else if (message == "User Not Found") {
+                  $("#error").html(message);
+                } else {
+                  "#error".html(message);
+                }
+              },
+            });
           }
-        })
+        });
       });
     </script>
   </body>

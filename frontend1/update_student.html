@@ -24,6 +24,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
     <div
       class="d-flex flex-column"
@@ -56,6 +57,23 @@
         class="container border border-info"
         style="margin: 70px auto"
       >
+        <div
+          class="operation_buttons my-1"
+          style="display: flex; justify-content: space-between"
+        >
+          <a
+            href="dashboard.html"
+            class="btn btn-sm btn-info"
+            style="float: left"
+            >Back</a
+          >
+          <span style="float: right">
+            <a class="btn btn-sm btn-success mx-2" id="update_student"
+              >Update</a
+            >
+            <a class="btn btn-sm btn-danger mx-2" id="delete_student">Delete</a>
+          </span>
+        </div>
         <form>
           <div class="form-row" style="margin: 1rem 0">
             <div class="col">
@@ -67,6 +85,8 @@
                   id="first_name"
                   aria-describedby="emailHelp"
                   placeholder="Enter First Name"
+                  required
+                  readonly
                 />
               </div>
             </div>
@@ -79,6 +99,8 @@
                   id="last_name"
                   aria-describedby="emailHelp"
                   placeholder="Last Name"
+                  required
+                  readonly
                 />
               </div>
             </div>
@@ -93,6 +115,8 @@
                   id="university_email"
                   aria-describedby="emailHelp"
                   placeholder="Enter University Email"
+                  required
+                  readonly
                 />
               </div>
             </div>
@@ -105,6 +129,7 @@
                   id="dob"
                   aria-describedby="emailHelp"
                   placeholder="Enter DOB"
+                  readonly
                 />
               </div>
             </div>
@@ -119,6 +144,7 @@
                   id="phone_number"
                   aria-describedby="emailHelp"
                   placeholder="Enter Phone Number"
+                  readonly
                 />
               </div>
             </div>
@@ -131,6 +157,7 @@
                   id="personal_email"
                   aria-describedby="emailHelp"
                   placeholder="Enter Personal Email"
+                  readonly
                 />
               </div>
             </div>
@@ -146,6 +173,7 @@
                   aria-describedby="emailHelp"
                   placeholder="Enter Degree Enrolled"
                   name="degree_enrolled"
+                  readonly
                 />
               </div>
             </div>
@@ -159,6 +187,7 @@
                   aria-describedby="emailHelp"
                   placeholder="Enter College/Institute"
                   name="college_institute"
+                  readonly
                 />
               </div>
             </div>
@@ -174,6 +203,7 @@
                   aria-describedby="emailHelp"
                   placeholder="Enter Department"
                   name="department"
+                  readonly
                 />
               </div>
             </div>
@@ -187,6 +217,7 @@
                   aria-describedby="emailHelp"
                   placeholder="Enter Spacialization"
                   name="specialization"
+                  readonly
                 />
               </div>
             </div>
@@ -202,6 +233,7 @@
                   aria-describedby="emailHelp"
                   placeholder="Enter Overall Grade"
                   name="overall_grade"
+                  readonly
                 />
               </div>
             </div>
@@ -212,6 +244,8 @@
                   class="form-control"
                   id="enrollment_status"
                   name="enrollment_status"
+                  required
+                  readonly
                 >
                   <option>Select</option>
                   <option value="active">Active</option>
@@ -225,15 +259,163 @@
             <div class="col-12">
               <div class="form-group">
                 <label for="address">Address</label>
-                <textarea class="form-control" id="address" rows="3"></textarea>
+                <textarea
+                  class="form-control"
+                  id="address"
+                  rows="3"
+                  readonly
+                ></textarea>
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-info" style="margin: 1rem">
+          <button
+            type="button"
+            class="btn btn-info"
+            id="new_student_save_button"
+            style="margin: 1rem"
+            disabled
+          >
             SAVE
           </button>
         </form>
       </div>
     </div>
+    <script>
+      $(document).ready(() => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get("id");
+
+        $("#update_student").on("click", () => {
+          if (
+            $(".form-control").is("[readonly]") &&
+            $("#new_student_save_button").is("[disabled]")
+          ) {
+            $(".form-control").removeAttr("readonly");
+            $("#new_student_save_button").removeAttr("disabled");
+          } else {
+            $(".form-control").prop("readonly", "true");
+            $("#new_student_save_button").prop("disabled", "true");
+          }
+        });
+
+        $("#delete_student").on("click", () => {
+          if (confirm("Are You Sure ?")) {
+            $.ajax({
+              contentType: "application/json; charset=utf-8",
+              url: "http://localhost:9000/students/" + id,
+              type: "DELETE",
+              success: (message) => {
+                if (message == "Student Data Deleted Successfully") {
+                  alert(message);
+                  window.location.href = "dashboard.html";
+                } else {
+                  alert(message);
+                }
+              },
+            });
+          }
+        });
+
+        $.ajax({
+          contentType: "application/json; charset=utf-8",
+          url: "http://localhost:9000/students/" + id,
+          type: "GET",
+          success: (students) => {
+            students.forEach((student) => {
+              $("#first_name").val(student.first_name);
+              $("#last_name").val(student.last_name);
+              $("#university_email").val(student.university_email);
+              $("#dob").val(student.dob);
+              $("#phone_number").val(student.phone_number);
+              $("#personal_email").val(student.personal_email);
+              $("#degree_enrolled").val(student.degree_enrolled);
+              $("#college_institute").val(student.college_institute);
+              $("#department").val(student.department);
+              $("#specialization").val(student.specialization);
+              $("#overall_grade").val(student.overall_grade);
+              $("#enrollment_status").val(student.enrollment_status);
+              $("#address").val(student.address);
+            });
+          },
+        });
+
+        $("#new_student_save_button").on("click", (e) => {
+          e.preventDefault();
+          let first_name = $("#first_name").val();
+          let last_name = $("#last_name").val();
+          let university_email = $("#university_email").val();
+          let dob = $("#dob").val();
+          let phone_number = $("#phone_number").val();
+          let personal_email = $("#personal_email").val();
+          let degree_enrolled = $("#degree_enrolled").val();
+          let college_institute = $("#college_institute").val();
+          let department = $("#department").val();
+          let specialization = $("#specialization").val();
+          let overall_grade = $("#overall_grade").val();
+          let enrollment_status = $("#enrollment_status").val();
+          let address = $("#address").val();
+
+          if (
+            first_name &&
+            last_name &&
+            university_email &&
+            enrollment_status
+          ) {
+            $.ajax({
+              contentType: "application/json; charset=utf-8",
+              url: "http://localhost:9000/students/" + id,
+              type: "PUT",
+              data: JSON.stringify({
+                first_name: first_name,
+                last_name: last_name,
+                university_email: university_email,
+                dob: dob,
+                phone_number: phone_number,
+                personal_email: personal_email,
+                degree_enrolled: degree_enrolled,
+                college_institute: college_institute,
+                department: department,
+                specialization: specialization,
+                overall_grade: overall_grade,
+                enrollment_status: enrollment_status,
+                address: address,
+              }),
+              success: (message, status) => {
+                if (message == "Student Data Updated Successfully") {
+                  alert(message);
+                  $.ajax({
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://localhost:9000/students/" + id,
+                    type: "GET",
+                    success: (students) => {
+                      students.forEach((student) => {
+                        $("#first_name").val(student.first_name);
+                        $("#last_name").val(student.last_name);
+                        $("#university_email").val(student.university_email);
+                        $("#dob").val(student.dob);
+                        $("#phone_number").val(student.phone_number);
+                        $("#personal_email").val(student.personal_email);
+                        $("#degree_enrolled").val(student.degree_enrolled);
+                        $("#college_institute").val(student.college_institute);
+                        $("#department").val(student.department);
+                        $("#specialization").val(student.specialization);
+                        $("#overall_grade").val(student.overall_grade);
+                        $("#enrollment_status").val(student.enrollment_status);
+                        $("#address").val(student.address);
+                      });
+                      $(".form-control").prop("readonly", "true");
+                      $("#new_student_save_button").prop("disabled", "true");
+                    },
+                  });
+                } else {
+                  alert(message);
+                }
+              },
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

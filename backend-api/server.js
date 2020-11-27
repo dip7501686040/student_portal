@@ -11,7 +11,6 @@ const port = process.env.PORT || 9000;
 
 // middlewire
 app.use(express.json());
-app.use(express.urlencoded());
 app.use(cors());
 
 // DB config
@@ -22,6 +21,7 @@ mongoose.connect(connection_url, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 //DB operations
@@ -40,13 +40,17 @@ app.post("/", (req, res) => {
   //       else res.status(404).send("User Not Found");
   //     }
   //   }
-  console.log(req.body);
   Admin.find({
-    user_name: "admin",
-    password: "admin",
-  }).then((data) => {
-    res.send(data);
-  });
+    user_name: req.body.user_name,
+    password: req.body.password,
+  })
+    .then((data) => {
+      if (data.length) res.status(200).send("Welcome Admin");
+      else res.status(404).send("User Not Found");
+    })
+    .catch((err) => {
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 app.post("/students", async (req, res) => {
@@ -55,7 +59,6 @@ app.post("/students", async (req, res) => {
   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   var yyyy = today.getFullYear();
   today = dd + "/" + mm + "/" + yyyy;
-
   const student = new Student({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
@@ -82,6 +85,12 @@ app.post("/students", async (req, res) => {
 
 app.get("/students", (req, res) => {
   Student.find().then((data) => {
+    res.status(200).send(data);
+  });
+});
+
+app.get("/students/:id", (req, res) => {
+  Student.find({ _id: req.params.id }).then((data) => {
     res.status(200).send(data);
   });
 });

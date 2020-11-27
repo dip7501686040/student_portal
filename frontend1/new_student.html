@@ -56,55 +56,32 @@
         class="container border border-info"
         style="margin: 70px auto"
       >
+        <a href="dashboard.html" class="btn btn-sm btn-info">Back</a>
         <form>
           <div class="form-row" style="margin: 1rem 0">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="first_name">First Name</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="first_name"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter First Name"
+                  required
                 />
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="last_name">Last Name</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="last_name"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="form-row" style="margin: 1rem 0">
-            <div class="col">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Last Name"
+                  required
                 />
               </div>
             </div>
@@ -112,51 +89,26 @@
           <div class="form-row" style="margin: 1rem 0">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="university_email">University Email address</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="university_email"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter University Email"
+                  required
                 />
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="dob">DOB</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="dob"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="form-row" style="margin: 1rem 0">
-            <div class="col">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter DOB"
                 />
               </div>
             </div>
@@ -164,25 +116,25 @@
           <div class="form-row" style="margin: 1rem 0">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="phone_number">Phone Number</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="phone_number"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter Phone Number"
                 />
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="personal_email">Personal Email address</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="personal_email"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter Personal Email"
                 />
               </div>
             </div>
@@ -190,48 +142,175 @@
           <div class="form-row" style="margin: 1rem 0">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="degree_enrolled">Degree Enrolled</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="degree_enrolled"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter Degree Enrolled"
+                  name="degree_enrolled"
                 />
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="college_institute">College/Institute</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  id="exampleInputEmail1"
+                  id="college_institute"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Enter College/Institute"
+                  name="college_institute"
                 />
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="margin: 1rem 0">
+            <div class="col">
+              <div class="form-group">
+                <label for="department">Department</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="department"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Department"
+                  name="department"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="specialization">Spacialization</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="specialization"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Spacialization"
+                  name="specialization"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row" style="margin: 1rem 0">
+            <div class="col">
+              <div class="form-group">
+                <label for="overall_grade">Overall Grade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="overall_grade"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter Overall Grade"
+                  name="overall_grade"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="enrollment_status">Enrollment Status</label>
+                <select
+                  class="form-control"
+                  id="enrollment_status"
+                  name="enrollment_status"
+                  required
+                >
+                  <option value="active" selected>Active</option>
+                  <option value="alumni">Alumni</option>
+                  <option value="deferred">Deferred</option>
+                </select>
               </div>
             </div>
           </div>
           <div class="form-row" style="margin: 1rem 0">
             <div class="col-12">
               <div class="form-group">
-                <label for="exampleFormControlTextarea1"
-                  >Example textarea</label
-                >
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
+                <label for="address">Address</label>
+                <textarea class="form-control" id="address" rows="3"></textarea>
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-info" style="margin: 1rem">
+          <button
+            type="button"
+            class="btn btn-info"
+            id="new_student_save_button"
+            style="margin: 1rem"
+          >
             SAVE
           </button>
         </form>
       </div>
     </div>
+    <script>
+      $(document).ready(function () {
+        $("#new_student_save_button").on("click", (e) => {
+          e.preventDefault();
+          let first_name = $("#first_name").val();
+          let last_name = $("#last_name").val();
+          let university_email = $("#university_email").val();
+          let dob = $("#dob").val();
+          let phone_number = $("#phone_number").val();
+          let personal_email = $("#personal_email").val();
+          let degree_enrolled = $("#degree_enrolled").val();
+          let college_institute = $("#college_institute").val();
+          let department = $("#department").val();
+          let specialization = $("#specialization").val();
+          let overall_grade = $("#overall_grade").val();
+          let enrollment_status = $("#enrollment_status").val();
+          let address = $("#address").val();
+
+          if (
+            first_name &&
+            last_name &&
+            university_email &&
+            enrollment_status
+          ) {
+            $.ajax({
+              contentType: "application/json; charset=utf-8",
+              url: "http://localhost:9000/students",
+              type: "POST",
+              data: JSON.stringify({
+                first_name: first_name,
+                last_name: last_name,
+                university_email: university_email,
+                dob: dob,
+                phone_number: phone_number,
+                personal_email: personal_email,
+                degree_enrolled: degree_enrolled,
+                college_institute: college_institute,
+                department: department,
+                specialization: specialization,
+                overall_grade: overall_grade,
+                enrollment_status: enrollment_status,
+                address: address,
+              }),
+              success: (message, status) => {
+                if (message == "Student Data Added Successfully") {
+                  alert(message);
+                  $("#first_name").val("");
+                  $("#last_name").val("");
+                  $("#university_email").val("");
+                  $("#dob").val("");
+                  $("#phone_number").val("");
+                  $("#personal_email").val("");
+                  $("#degree_enrolled").val("");
+                  $("#college_institute").val("");
+                  $("#department").val("");
+                  $("#specialization").val("");
+                  $("#overall_grade").val("");
+                  $("#enrollment_status").val("");
+                  $("#address").val("");
+                } else {
+                  alert(message);
+                }
+              },
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
